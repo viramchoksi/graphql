@@ -8,7 +8,6 @@ export const GET_USER = gql`
       nodes {
         ... on User {
           name
-          login
           url
           avatarUrl
           updatedAt
