@@ -34,7 +34,7 @@ const FindPr = () => {
 
   const { opened, closed } = counts
 
-  const { loading, data, error, refetch } = useQuery(GET_MERGE_REQUEST, {
+  const { loading, data, error } = useQuery(GET_MERGE_REQUEST, {
     variables: {
       query: "is:pr is:public archived:false author:viramchoksi"
     }
@@ -49,12 +49,11 @@ const FindPr = () => {
       variables: {
         input: {
           "title": title,
-          "repositoryId": "R_kgDOJMWTFg",
+          "repositoryId": "R_kgDOJJbhgw",
           "headRefName": head,
           "baseRefName": base
         }
-      },
-      onCompleted: refetch
+      }
     })
 
   }
@@ -160,16 +159,14 @@ const FindPr = () => {
                     input: {
                       pullRequestId: e?.node?.id
                     }
-                  },
-                  onCompleted: refetch
+                  }
                 })}>Merge</div>}
                 {e?.node?.state === "MERGED" && <div className="cursor-pointer" onClick={() => revert({
                   variables: {
                     input: {
                       pullRequestId: e?.node?.id
                     }
-                  },
-                  onCompleted: refetch
+                  }
                 })}>Revert</div>}
               </div>
             )
